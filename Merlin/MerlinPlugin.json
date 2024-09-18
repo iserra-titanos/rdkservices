@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/Thunder/master/Tools/JsonGenerator/schemas/plugin.schema.json",
+    "info": {
+      "title": "Merlin Plugin",
+      "callsign": "Merlin",
+      "locator": "libWPEFrameworkMerlin.so",
+      "status": "production",
+      "description": "The `Merlin` plugin controlls Disney+ native application"
+    },
+    "interface": {
+      "$ref": "Merlin.json#"
+    }
+}

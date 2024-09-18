@@ -1,0 +1,88 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "Merlin API",
+        "class": "Merlin",
+        "description": "The `Merlin` plugin provides Disney+ Out of process application"
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "demo mode": {
+            "summary": "Run application in demo mode",
+            "type": "bool",
+            "example": false
+        },
+    },
+    "properties" : {
+        "state": {
+            "summary": "Running state of the service",
+            "description": "Use this property to return the running state of the service.",
+            "events": {
+                "statechange" : "Triggered if the state of the service changes."
+            },
+            "params": {
+                "type": "string",
+                "enum": [
+                    "resumed",
+                    "suspended"
+                ],
+                "example": "resumed"
+            }
+        },
+        "visibility": {
+            "summary": "Application visibility",
+            "description": "Use this property to return visibilty status of current browser.",
+            "events": {
+                "visibilitychange" : "Triggered if the urlchange event returns false as URL failed to load"
+            },
+            "params": {
+                "type": "string",
+                "example": "visible"
+            },
+            "errors": [
+                {
+                    "description": "Returned when the operation is unavailable",
+                    "$ref": "#/common/errors/unavailable"
+                }
+            ]           
+        }
+    },
+    "events": {
+        "statechange": {
+            "summary": "Triggered when the state of the service changes",
+            "params": {
+                "type":"object",
+                "properties": {
+                    "suspended": {
+                        "summary": "`true` if the service has entered a suspended state  or `false` if the service has entered a resumed state",
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "required": [
+                    "suspended"
+                ]
+            }
+        },
+        "visibilitychange": {
+            "summary": "Triggered when the browser visibility changes",
+            "params": {
+                "type":"object",
+                "properties": {
+                    "hidden": {
+                        "summary": "`true` if the browser has been hidden or `false` if the browser is made visible",
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "required": [
+                    "hidden"
+                ]
+            }
+        }
+    }
+}
+
